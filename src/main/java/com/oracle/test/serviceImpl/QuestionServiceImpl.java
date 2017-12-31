@@ -31,11 +31,15 @@ public class QuestionServiceImpl implements QuestionService {
     public List<Question> findAllQuestionsWithAnswers(long id) {
         List<Question> questions = questionDao.findAllQuestionsWithAnswers(id);
         for (Question question : questions) {
-            question.setProblemStatement("<div><pre>" + question.getProblemStatement().replaceAll("///", "") + "</pre></div>");
+            question.setProblemStatement(styleText(question.getProblemStatement().replaceAll("///", "")));
             for (Answer answer : question.getAnswers()) {
-                answer.setText("<pre>" + answer.getText().replaceAll("///", "") + "</pre>");
+                answer.setText(styleText(answer.getText().replaceAll("///", "")));
             }
         }
         return questions;
+    }
+
+    public String styleText(String text) {
+        return "<pre>" + text + "</pre>";
     }
 }
