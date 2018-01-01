@@ -20,6 +20,7 @@ public class SubCategoryController {
 
     @GetMapping("/subcategory/{id}")
     public String subCategory(Model model, @PathVariable long id){
+        model.addAttribute("subCategory", subCategoryService.findOne(id));
         model.addAttribute("questions", questionService.findAllQuestionsWithAnswers(id));
         return "subCategory";
     }

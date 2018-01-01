@@ -7,6 +7,7 @@ import com.oracle.test.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -33,7 +34,7 @@ public class QuestionServiceImpl implements QuestionService {
         for (Question question : questions) {
             question.setProblemStatement(styleText(question.getProblemStatement().replaceAll("///", "")));
             for (Answer answer : question.getAnswers()) {
-                answer.setText(styleText(answer.getText().replaceAll("///", "")));
+                answer.setText(answer.getText().replaceAll("///", ""));
             }
         }
         return questions;
@@ -42,4 +43,5 @@ public class QuestionServiceImpl implements QuestionService {
     public String styleText(String text) {
         return "<pre>" + text + "</pre>";
     }
+
 }

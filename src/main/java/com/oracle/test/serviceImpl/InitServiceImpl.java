@@ -35,26 +35,26 @@ public class InitServiceImpl implements InitService {
     @Override
     public void init() {
 
+        final Category ocjpCategory = new Category("Oracle Certified Professional, Java SE 7 Programmer");
         final Category ocaCategory = new Category("Oracle Certified Associate, Java SE 7 Programmer");
-//        final Category ocjpCategory = new Category("Oracle Certified Professional, Java SE 7 Programmer");
-//        final Category ejbCategory = new Category("Enterprise JavaBeans Developer");
-//        final Category jpaCategory = new Category("Java saveence API Developer");
-//        final Category webComponentCategory = new Category("Web Component Developer");
-//        final Category webServicesDeveloper = new Category("Web Services Developer");
+        final Category ejbCategory = new Category("Enterprise JavaBeans Developer");
+        final Category jpaCategory = new Category("Java saveence API Developer");
+        final Category webComponentCategory = new Category("Web Component Developer");
+        final Category webServicesDeveloper = new Category("Web Services Developer");
 
+        categoryDao.save(ocjpCategory);
         categoryDao.save(ocaCategory);
-//        categoryDao.save(webServicesDeveloper);
-//        categoryDao.save(ocjpCategory);
-//        categoryDao.save(ejbCategory);
-//        categoryDao.save(jpaCategory);
-//        categoryDao.save(webComponentCategory);
+        categoryDao.save(webServicesDeveloper);
+        categoryDao.save(ejbCategory);
+        categoryDao.save(jpaCategory);
+        categoryDao.save(webComponentCategory);
 
+        fillDb(ocjpCategory, "jqplusv7.ets");
         fillDb(ocaCategory, "japv7.ets");
-//        fillDb(ocjpCategory, "jqplusv7.ets");
-//        fillDb(ejbCategory, "ejbplusv6.ets");
-//        fillDb(jpaCategory, "jpapv6.ets");
-//        fillDb(webServicesDeveloper, "jwspv6.ets");
-//        fillDb(webComponentCategory, "jwpv6.ets");
+        fillDb(ejbCategory, "ejbplusv6.ets");
+        fillDb(jpaCategory, "jpapv6.ets");
+        fillDb(webServicesDeveloper, "jwspv6.ets");
+        fillDb(webComponentCategory, "jwpv6.ets");
     }
 
     private void fillDb(final Category category, final String fileName) {

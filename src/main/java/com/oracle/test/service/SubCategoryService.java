@@ -9,5 +9,6 @@ import java.util.List;
  */
 public interface SubCategoryService {
     void save(Subcategory subcategory);
+    Subcategory findOne(Long id);
     List<Subcategory> findAll();
 }

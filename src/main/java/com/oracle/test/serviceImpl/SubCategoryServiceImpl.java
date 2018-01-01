@@ -25,4 +25,9 @@ public class SubCategoryServiceImpl implements SubCategoryService {
     public List<Subcategory> findAll() {
         return subCategoryDao.findAll();
     }
+
+    @Override
+    public Subcategory findOne(Long id) {
+        return subCategoryDao.findOne(id);
+    }
 }
