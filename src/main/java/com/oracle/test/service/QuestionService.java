@@ -13,4 +13,6 @@ public interface QuestionService {
     List<Question> findAll();
 
     List<Question> findAllQuestionsWithAnswers(long id);
+
+    List<Question> random(Long categoryId);
 }

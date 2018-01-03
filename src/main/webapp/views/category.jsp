@@ -18,7 +18,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 <div class="container">
@@ -27,11 +26,11 @@
         <tr>
             <th>id</th>
             <th>sub category name</th>
-            <th></th>
+            <th><a href="/random/${category.id}">random 25</a></th>
         </tr>
         <c:forEach items="${category.subcategorys}" var="subcategory">
             <tr>
-                <td>${subcategory.id}</td>
+                <td>${category.id}</td>
                 <td>${subcategory.name}</td>
                 <td><a href="/subcategory/${subcategory.id}">go to</a></td>
             </tr>

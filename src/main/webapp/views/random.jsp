@@ -1,15 +1,15 @@
 <%--
   Created by IntelliJ IDEA.
   User: admin
-  Date: 12/30/2017
-  Time: 5:17 PM
+  Date: 1/3/2018
+  Time: 9:55 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>sub category</title>
+    <title>random</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -23,13 +23,15 @@
 <body>
 <div class="container">
     <table class="table table-hover">
-        <h3 class="cent">${subCategory.name} ${questions.size()}</h3>
+        <h3 class="cent">random 25</h3>
         <tr>
+            <th>category</th>
             <th>toughness</th>
             <th>problemStatement</th>
         </tr>
         <c:forEach items="${questions}" var="question">
             <tr>
+                <td>${question.category.id}</td>
                 <td>${question.toughness}</td>
                 <td>${question.problemStatement}
                     <c:forEach items="${question.answers}" var="answer">
