@@ -61,7 +61,12 @@ public class QuestionServiceImpl implements QuestionService {
 
         for (int i = 0; i < 25; i++) {
             int rand = random.nextInt(allQuestions.size());
-            questionsRandom.add(allQuestions.get(rand));
+            Question question = allQuestions.get(rand);
+            question.setProblemStatement(styleText(question.getProblemStatement().replaceAll("///", "")));
+            for (Answer answer : question.getAnswers()) {
+                answer.setText(answer.getText().replaceAll("///", ""));
+            }
+            questionsRandom.add(question);
         }
         return questionsRandom;
     }
@@ -70,4 +75,21 @@ public class QuestionServiceImpl implements QuestionService {
         return "<pre>" + text + "</pre>";
     }
 
+    @Override
+    public Question findOne(long id) {
+        return questionDao.findOne(id);
+    }
+
+    @Override
+    public void update(Question question) {
+        question.setExplanation(question.getExplanation().replaceAll("\"", ""));
+        questionDao.save(question);
+    }
+
+    @Override
+    public String getComment(Long id) {
+        Question question = questionDao.findOne(id);
+        question.setExplanation(question.getExplanation().replaceAll("///", ""));
+        return question.getExplanation();
+    }
 }

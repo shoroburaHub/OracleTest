@@ -19,9 +19,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-<div class="container">
+<div class="context">
     <table class="table table-hover">
         <h3 class="cent">random 25</h3>
         <tr>
@@ -35,44 +36,25 @@
                 <td>${question.toughness}</td>
                 <td>${question.problemStatement}
                     <c:forEach items="${question.answers}" var="answer">
-                        <p id="${answer.id}"><input type="checkbox" value="${answer.id}"> ${answer.text}</p>
+                        <p id="${answer.id}"><input class="${question.id}answers" type="checkbox"
+                                                    value="${answer.id}"> ${answer.text}</p>
                     </c:forEach>
                     <br>
-                    <button class="btn btn-primary" onclick="checkAnswer(${question.id})">check</button>
+                    <div id="${question.id}commentBlock" hidden="true">
+                        <textarea id="${question.id}commentText" style="width: 80%; height: 200px;"></textarea>
+                        <br>
+                        <button class="btn btn-primary" onclick="comment(${question.id})">save comment</button>
+                    </div>
+                    <br>
+                    <button id="checkAnswer${question.id}" class="btn btn-primary" onclick="checkAnswer(${question.id})">check</button>
+                    <button class="btn btn-primary" onclick="showComment(${question.id})">comment</button>
                 </td>
             </tr>
         </c:forEach>
     </table>
 </div>
-<script>
-    function checkAnswer(questionId) {
-//        console.log('questionId = ' + questionId);
-//        var checkboxes = document.getElementsByClassName(questionId);
-//        var answerIds = new Array();
-//        for (var i = 0; i < checkboxes.length; i++) {
-//            if (checkboxes[i].checked === true) {
-//                answerIds.push(checkboxes[i].value);
-//            }
-//        }
-//        console.log(answerIds);
-        $.ajax({
-            url: '/checkAnswer/' + questionId,
-            method: 'POST',
-            success: function (res) {
-                console.log(res);
-                for (var i = 0; i < res.length; i++) {
-                    if(res[i].correct == true){
-                        document.getElementById(res[i].id).style.color = '#51ff00';
-                    }else {
-                        document.getElementById(res[i].id).style.color = '#ff0029';
-                    }
-                }
-            },
-            error: function (err) {
-                console.log(err);
-            }
-        })
-    }
-</script>
+<button onclick="topFunction()" id="myBtn">0 / ${questions.size()}</button>
+<button onclick="topFunction()" id="saveHistory">save history</button>
+<script src="/js/main.js"></script>
 </body>
 </html>

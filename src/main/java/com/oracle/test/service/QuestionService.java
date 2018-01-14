@@ -14,5 +14,11 @@ public interface QuestionService {
 
     List<Question> findAllQuestionsWithAnswers(long id);
 
+    Question findOne(long id);
+
     List<Question> random(Long categoryId);
+
+    void update(Question question);
+
+    String getComment(Long id);
 }
